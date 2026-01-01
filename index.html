@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jordan Cue Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <div class="brand-name">Jordan</div>
+        <div class="brand-sub">Premium Cue Products Made By Jordan</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="#shop">Shop</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <button class="cart-btn" id="openCart">
+      🛒 Cart <span class="pill" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero" id="why">
+    <div class="hero-card">
+      <div class="chip">⚡ Fast shipping • Trusted quality</div>
+      <h1>Make your cue shop look <span class="grad">premium</span>.</h1>
+      <p class="hero-sub">
+        Modern layout, strong product cards, search + filter, and a cart popup.
+        Add your own images and start selling.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#shop">Shop Now</a>
+        <button class="btn ghost" id="openCart2">View Cart</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span>⭐</span><b>4.8+</b><small>Ratings</small></div>
+        <div class="stat"><span>🧰</span><b>Accessories</b><small>Tips, Chalk, Cases</small></div>
+        <div class="stat"><span>🚚</span><b>1–3 Days</b><small>Delivery*</small></div>
+      </div>
+    </div>
+
+    <div class="hero-side">
+      <div class="deal">
+        <div>
+          <b>🔥 Today’s Deal</b>
+          <p>10% off orders above $600</p>
+        </div>
+        <div class="code">Jordanluvu</div>
+      </div>
+
+      <div class="glass">
+        <b>Why customers buy</b>
+        <ul>
+          <li>Premium presentation</li>
+          <li>Clear pricing & info</li>
+          <li>Smooth checkout UI</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTROLS -->
+  <section class="controls" id="shop">
+    <div class="search">
+      🔎 <input id="searchInput" placeholder="Search cues, chalk, tips..." />
+    </div>
+
+    <div class="select">
+      Category:
+      <select id="categorySelect">
+        <option value="all">All</option>
+        <option value="cue">Cues</option>
+        <option value="shaft">Shafts</option>
+        <option value="tip">Tips</option>
+        <option value="chalk">Chalk</option>
+        <option value="case">Cases</option>
+        <option value="accessory">Accessories</option>
+      </select>
+    </div>
+
+    <div class="select">
+      Sort:
+      <select id="sortSelect">
+        <option value="featured">Featured</option>
+        <option value="low">Price: Low → High</option>
+        <option value="high">Price: High → Low</option>
+        <option value="rating">Rating</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="grid" id="productGrid"></section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="panel">
+      <h2>FAQ</h2>
+      <div class="q">
+        <b>Is this real checkout?</b>
+        <p>This is an UI. To accept payments, connect Stripe / PayNow later.</p>
+      </div>
+      <div class="q">
+        <b>How do I add images?</b>
+        <p>Put images in <code>images/</code> and set <code>image: "images/xxx.jpg"</code> in <code>app.js</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>© <b>CUEVA</b> — store page</div>
+    <div class="footer-links">
+      <a href="#shop">Shop</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </footer>
+</main>
+
+<!-- CART MODAL -->
+<div class="backdrop" id="backdrop">
+  <div class="modal">
+    <div class="modal-h">
+      <b>🛒 Your Cart</b>
+      <button class="x" id="closeCart">✕</button>
+    </div>
+
+    <div class="modal-b">
+      <div class="cart-list" id="cartList"></div>
+
+      <div class="summary">
+        <div class="row"><span>Subtotal</span><b id="subTotal">$0.00</b></div>
+        <div class="row"><span>Shipping</span><b id="ship">$0.00</b></div>
+        <div class="row total"><span>Total</span><b id="total">$0.00</b></div>
+
+        <button class="btn primary full" id="checkoutBtn">✅ Place Order</button>
+        <button class="btn ghost full" id="clearBtn">🧹 Clear Cart</button>
+
+        <div class="ok" id="okMsg">✅ Order created. Next: connect payments.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PAYNOW MODAL -->
+<div class="backdrop" id="paynowBackdrop">
+  <div class="modal">
+    <div class="modal-h">
+      <b>PayNow Payment</b>
+      <button class="x" id="closePaynow">✕</button>
+    </div>
+
+    <div class="modal-b" style="grid-template-columns:1fr;">
+      <div style="text-align:center">
+        <p style="font-weight:900">Scan to Pay</p>
+        <img src="images/paynow.png" style="width:220px;border-radius:16px">
+        <p style="color:#A8B3D6;font-weight:800;margin-top:10px">
+          Transfer the exact amount shown.<br>
+          Put your <b>Name + Order</b> in remarks.
+        </p>
+
+        <button class="btn primary full" id="confirmPaid">
+          ✅ I Have Paid
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
